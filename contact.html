@@ -16,11 +16,12 @@
 
 <header class="header" id="header">
   <nav class="nav">
-    <a href="index.html" class="logo"><div class="logo-icon"></div><div class="logo-text"><div class="logo-name">SHAKTI <span>SECURITY</span></div><div class="logo-tagline">Agency · Est. 2010</div></div></a>
+    <a href="index.html" class="logo"><div class="logo-icon"></div><div class="logo-text"><div class="logo-name">SHAKTI <span>SECURITY</span></div><div class="logo-tagline">Agency · Est. 1995</div></div></a>
     <div class="nav-links">
       <a href="index.html" class="nav-link">Home</a>
       <a href="about.html" class="nav-link">About Us</a>
       <a href="services.html" class="nav-link">Services</a>
+      <a href="projects.html" class="nav-link">Projects</a>
       <a href="careers.html" class="nav-link">Careers</a>
       <a href="faq.html" class="nav-link">FAQ</a>
       <a href="contact.html" class="nav-link active nav-cta">📞 Contact Us</a>
@@ -33,6 +34,7 @@
   <a href="index.html" class="nav-link">Home</a>
   <a href="about.html" class="nav-link">About Us</a>
   <a href="services.html" class="nav-link">Services</a>
+  <a href="projects.html" class="nav-link">Projects</a>
   <a href="careers.html" class="nav-link">Careers</a>
   <a href="faq.html" class="nav-link">FAQ</a>
   <a href="contact.html" class="nav-link">Contact Us</a>
@@ -189,8 +191,8 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand"><a href="index.html" class="logo"><div class="logo-icon"></div><div class="logo-text"><div class="logo-name" style="color:#fff;">SHAKTI <span>SECURITY</span></div><div class="logo-tagline">Agency · Est. 2010</div></div></a><p>Providing trusted security, CCTV, facility management, and manpower services across Odisha since 2010.</p><div class="footer-socials"><a href="#" class="social-btn">📘</a><a href="#" class="social-btn">💬</a><a href="mailto:shaktisecurityagency@gmail.com" class="social-btn">✉️</a><a href="tel:9776157571" class="social-btn">📞</a></div></div>
-      <div class="footer-col"><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="careers.html">Careers</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-brand"><a href="index.html" class="logo"><div class="logo-icon"></div><div class="logo-text"><div class="logo-name" style="color:#fff;">SHAKTI <span>SECURITY</span></div><div class="logo-tagline">Agency · Est. 1995</div></div></a><p>Providing trusted security, CCTV, facility management, and manpower services across Odisha since 1995.</p><div class="footer-socials"><a href="#" class="social-btn">📘</a><a href="#" class="social-btn">💬</a><a href="mailto:shaktisecurityagency@gmail.com" class="social-btn">✉️</a><a href="tel:9776157571" class="social-btn">📞</a></div></div>
+      <div class="footer-col"><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="careers.html">Careers</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
       <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html">Facility Management</a></li><li><a href="services.html">Armed Security</a></li><li><a href="services.html">CCTV Installation</a></li><li><a href="services.html">Manpower Outsourcing</a></li></ul></div>
       <div class="footer-col"><h5>Contact Info</h5><ul><li><a href="tel:9776157571">📞 9776157571</a></li><li><a href="tel:9937083214">📞 9937083214</a></li><li><a href="mailto:shaktisecurityagency@gmail.com">✉️ Gmail</a></li><li><a href="#">📍 Angul, Odisha</a></li></ul></div>
     </div>
@@ -199,5 +201,53 @@
 </footer>
 <button class="back-to-top">↑</button>
 <script src="main.js"></script>
+<script>
+// WhatsApp Form Integration - Contact/Quote
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // Get form values
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim() || 'Not provided';
+  const service = document.getElementById('service').options[document.getElementById('service').selectedIndex].text;
+  const location = document.getElementById('location').value.trim();
+  const message = document.getElementById('message').value.trim() || 'No additional details';
+  
+  // Validate required fields
+  if (!name || !phone || !document.getElementById('service').value || !location) {
+    alert('Please fill in all required fields (Name, Phone, Service, Location)');
+    return;
+  }
+  
+  // Create WhatsApp message
+  const whatsappMessage = `🛡️ *NEW QUOTE REQUEST - SHAKTI SECURITY*
+━━━━━━━━━━━━━━━━━━━━━━
+
+👤 *Name:* ${name}
+📞 *Phone:* ${phone}
+📧 *Email:* ${email}
+
+🔒 *Service Required:* ${service}
+📍 *Location:* ${location}
+
+📝 *Requirements:*
+${message}
+
+━━━━━━━━━━━━━━━━━━━━━━
+_Sent from Shakti Security Website_`;
+
+  // Encode and redirect to WhatsApp
+  const encodedMessage = encodeURIComponent(whatsappMessage);
+  const whatsappURL = `https://wa.me/919776157571?text=${encodedMessage}`;
+  
+  // Open WhatsApp
+  window.open(whatsappURL, '_blank');
+  
+  // Show success message
+  document.querySelector('#contactForm .success-message').innerHTML = '✅ Redirecting to WhatsApp...';
+  document.querySelector('#contactForm .success-message').style.display = 'block';
+});
+</script>
 </body>
 </html>
