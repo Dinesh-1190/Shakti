@@ -129,7 +129,7 @@ document.querySelectorAll('.faq-question').forEach(question => {
 
 // ===== CONTACT FORM =====
 const contactForm = document.getElementById('contactForm');
-if (contactForm) {
+if (contactForm && contactForm.dataset.submitMode !== 'whatsapp') {
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const btn = contactForm.querySelector('button[type="submit"]');
@@ -179,11 +179,19 @@ if (careerForm) {
 }
 
 // ===== ACTIVE NAV LINK =====
-const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
 document.querySelectorAll('.nav-link').forEach(link => {
   const href = link.getAttribute('href');
-  if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-    link.classList.add('active');
+  if (!href) return;
+
+  try {
+    const linkUrl = new URL(href, window.location.origin);
+    const linkPath = linkUrl.pathname.replace(/\/+$/, '') || '/';
+    if (linkPath === currentPath) {
+      link.classList.add('active');
+    }
+  } catch (error) {
+    // Ignore non-URL nav items such as hash links.
   }
 });
 
