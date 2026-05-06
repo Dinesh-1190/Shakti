@@ -10,6 +10,18 @@
   <meta name="author" content="Shakti Security Agency" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.shaktisecurityagency.com/" />
+  <script>
+    (function () {
+      const canonicalHost = 'www.shaktisecurityagency.com';
+      const isLocalHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      if (isLocalHost) return;
+      const isIndexPath = window.location.pathname === '/index.html';
+      if (window.location.protocol !== 'https:' || window.location.hostname !== canonicalHost || isIndexPath) {
+        const canonicalPath = isIndexPath ? '/' : window.location.pathname;
+        window.location.replace('https://' + canonicalHost + canonicalPath + window.location.search + window.location.hash);
+      }
+    })();
+  </script>
   <meta property="og:title" content="Shakti Security Agency | Trusted Security & Facility Management | Angul, Odisha" />
   <meta property="og:description" content="Shakti Security Agency - Leading provider of Armed & Unarmed Security Services, CCTV Installation, Facility Management, and Manpower Outsourcing in Angul, Odisha." />
   <meta property="og:type" content="website" />
@@ -85,8 +97,13 @@
   </script>
 
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  
 </head>
+
 <body>
 
 <!-- PRELOADER -->
